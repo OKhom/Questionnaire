@@ -6,10 +6,8 @@
     <title>Questionnaire</title>
 </head>
 <body>
-<h1><%= "Questionnaire" %>
-</h1>
+<h1>Questionnaire</h1>
 <% String login = (String)session.getAttribute("userLogin"); %>
-
 <% if (login == null || "".equals(login)) { %>
 <form action="/login" method="POST">
     Login: <input type="text" name="login"><br>
