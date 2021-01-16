@@ -30,8 +30,7 @@
            name="question2" value="<%=i%>">
     <label for="question2choice<%=i%>"><%=ResultServlet.getAnswers2()[i]%></label>
     <%}%>
-
-
+    
     <p><button type="submit">Submit</button></p>
 </form>
 
