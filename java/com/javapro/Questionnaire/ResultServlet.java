@@ -21,7 +21,7 @@ public class ResultServlet extends HttpServlet {
     static final String TEMPLATE = "<html>" +
             "\n<head>\n\t<title>Questionnaire</title>\n</head>" +
             "\n<body>\n\t<h1>Questionnaire Results</h1>" +
-            "\n\t%s\n</body>\n</html>\n";
+            "\n%s\n</body>\n</html>\n";
 
     public static String getQuestion1() {
         return question1;
