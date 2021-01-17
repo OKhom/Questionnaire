@@ -72,18 +72,20 @@ public class ResultServlet extends HttpServlet {
         StringBuilder totalAnswer = new StringBuilder();
         for (int i = 0; i < answers.length; i++) {
             tableHeader.append("<th width=\"").append(cellWidth).append("px\">").append(answers[i]).append("</th>");
-            userAnswer.append("<td align=\"center\">").append(userResult[i]).append("</td>");
-            totalAnswer.append("<td align=\"center\">").append(result.get(i)).append("</td>");
+            userAnswer.append("<td>").append(userResult[i]).append("</td>");
+            totalAnswer.append("<td>").append(result.get(i)).append("</td>");
         }
         table.append("\t<table border=\"1\">\n");
-        table.append("\t\t<caption>").append(question).append("</caption>\n");
+        table.append("\t\t<b>").append(question).append("</b><br>\n");
         table.append("\t\t<tr>").append("<th width=\"").append(cellWidth).append("px\">").append("</th>");
         table.append(tableHeader).append("</tr>\n");
-        table.append("\t\t<tr>").append("<td align=\"center\">").append(user).append("</td>");
+        table.append("\t\t<tbody align=\"center\">\n");
+        table.append("\t\t\t<tr>").append("<td>").append(user).append("</td>");
         table.append(userAnswer).append("</tr>\n");
-        table.append("\t\t<tr>").append("<td align=\"center\">").append("Total").append("</td>");
+        table.append("\t\t\t<tr>").append("<td>").append("Total").append("</td>");
         table.append(totalAnswer).append("</tr>\n");
-        table.append("\t<table>\n\t<br>\n");
+        table.append("\t\t</tbody>\n");
+        table.append("\t</table>\n\t<br>\n");
         return table;
     }
 }
