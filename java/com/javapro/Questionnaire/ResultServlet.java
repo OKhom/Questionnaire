@@ -57,45 +57,33 @@ public class ResultServlet extends HttpServlet {
         }
 
         StringBuilder resultTable = new StringBuilder();
-// Building Table with First Question Answers
-        StringBuilder tableHeader = new StringBuilder();
-        StringBuilder userAnswer = new StringBuilder();
-        StringBuilder totalAnswer = new StringBuilder();
-        for (int i = 0; i < answers1.length; i++) {
-            tableHeader.append("<th width=\"").append(cellWidth).append("px\">").append(answers1[i]).append("</th>");
-            userAnswer.append("<td align=\"center\">").append(userResult1[i]).append("</td>");
-            totalAnswer.append("<td align=\"center\">").append(result1.get(i)).append("</td>");
-        }
-        resultTable.append("\t<table border=\"1\">\n");
-        resultTable.append("\t\t<caption>Question 1. ").append(question1).append("</caption>\n");
-        resultTable.append("\t\t<tr>").append("<th width=\"").append(cellWidth).append("px\">").append("</th>");
-        resultTable.append(tableHeader).append("</tr>\n");
-        resultTable.append("\t\t<tr>").append("<td align=\"center\">").append(userLogin).append("</td>");
-        resultTable.append(userAnswer).append("</tr>\n");
-        resultTable.append("\t\t<tr>").append("<td align=\"center\">").append("Total").append("</td>");
-        resultTable.append(totalAnswer).append("</tr>\n");
-        resultTable.append("\t<table>\n\t<br>\n");
-// Building Table with Second Question Answers
-        tableHeader = new StringBuilder();
-        userAnswer = new StringBuilder();
-        totalAnswer = new StringBuilder();
-        for (int i = 0; i < answers2.length; i++) {
-            tableHeader.append("<th width=\"").append(cellWidth).append("px\">").append(answers2[i]).append("</th>");
-            userAnswer.append("<td align=\"center\">").append(userResult2[i]).append("</td>");
-            totalAnswer.append("<td align=\"center\">").append(result2.get(i)).append("</td>");
-        }
-        resultTable.append("\t<table border=\"1\">\n");
-        resultTable.append("\t\t<caption>Question 2. ").append(question2).append("</caption>\n");
-        resultTable.append("\t\t<tr>").append("<th width=\"").append(cellWidth).append("px\">").append("</th>");
-        resultTable.append(tableHeader).append("</tr>\n");
-        resultTable.append("\t\t<tr>").append("<td align=\"center\">").append(userLogin).append("</td>");
-        resultTable.append(userAnswer).append("</tr>\n");
-        resultTable.append("\t\t<tr>").append("<td align=\"center\">").append("Total").append("</td>");
-        resultTable.append(totalAnswer).append("</tr>\n");
-        resultTable.append("\t<table>\n\t<br>");
-        resultTable.append("Click <a href=/index.jsp>here</a> to vote again</br>");
+        resultTable.append(tableBuilding(userLogin, question1, answers1, userResult1, result1)); // Table of Question1
+        resultTable.append(tableBuilding(userLogin, question2, answers2, userResult2, result2)); // Table of Question2
+        resultTable.append("\tClick <a href=/index.jsp>here</a> to vote again</br>");
 
         PrintWriter pw = response.getWriter();
         pw.printf(String.format(TEMPLATE, resultTable));
+    }
+
+    private StringBuilder tableBuilding (String user, String question, String[] answers, int[] userResult, AtomicIntegerArray result) {
+        StringBuilder table = new StringBuilder();
+        StringBuilder tableHeader = new StringBuilder();
+        StringBuilder userAnswer = new StringBuilder();
+        StringBuilder totalAnswer = new StringBuilder();
+        for (int i = 0; i < answers.length; i++) {
+            tableHeader.append("<th width=\"").append(cellWidth).append("px\">").append(answers[i]).append("</th>");
+            userAnswer.append("<td align=\"center\">").append(userResult[i]).append("</td>");
+            totalAnswer.append("<td align=\"center\">").append(result.get(i)).append("</td>");
+        }
+        table.append("\t<table border=\"1\">\n");
+        table.append("\t\t<caption>").append(question).append("</caption>\n");
+        table.append("\t\t<tr>").append("<th width=\"").append(cellWidth).append("px\">").append("</th>");
+        table.append(tableHeader).append("</tr>\n");
+        table.append("\t\t<tr>").append("<td align=\"center\">").append(user).append("</td>");
+        table.append(userAnswer).append("</tr>\n");
+        table.append("\t\t<tr>").append("<td align=\"center\">").append("Total").append("</td>");
+        table.append(totalAnswer).append("</tr>\n");
+        table.append("\t<table>\n\t<br>\n");
+        return table;
     }
 }
