@@ -75,8 +75,8 @@ public class ResultServlet extends HttpServlet {
             userAnswer.append("<td>").append(userResult[i]).append("</td>");
             totalAnswer.append("<td>").append(result.get(i)).append("</td>");
         }
+        table.append("\t<b>").append(question).append("</b><br>\n");
         table.append("\t<table border=\"1\">\n");
-        table.append("\t\t<b>").append(question).append("</b><br>\n");
         table.append("\t\t<tr>").append("<th width=\"").append(cellWidth).append("px\">").append("</th>");
         table.append(tableHeader).append("</tr>\n");
         table.append("\t\t<tbody align=\"center\">\n");
